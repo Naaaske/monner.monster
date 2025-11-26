@@ -44,7 +44,6 @@ function copyToClipboard(elementId) {
     }
 
     element.select();
-    element.setSelectionRange(0, 99999);
 
     try {
         document.execCommand('copy');
