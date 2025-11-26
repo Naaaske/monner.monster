@@ -1,21 +1,19 @@
-/* Minimal CSS for barebones/default look */
-
 body {
-    font-family: sans-serif; /* Use system default font for barebones look */
+    font-family: sans-serif; 
     padding: 20px;
     margin: 0;
-    background-color: #fff; /* White background */
+    background-color: #fff;
 }
 
 .container {
     max-width: 960px;
     width: 100%;
-    margin: 0 auto; /* Center the container */
-    padding: 0; /* Remove custom padding */
-    border: none; /* Remove custom border */
+    margin: 0 auto;
+    padding: 0;
+    border: none;
 }
 
-/* --- Header --- */
+
 .title {
     font-size: 2em;
     text-align: center;
@@ -29,11 +27,11 @@ body {
     margin-bottom: 2em;
 }
 
-/* --- Grid Layout (Keep for basic responsiveness) --- */
+
 .converter-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px; /* Small gap */
+    gap: 20px;
 }
 
 @media (min-width: 1024px) {
@@ -42,12 +40,11 @@ body {
     }
 }
 
-/* --- Card Styles (Minimal styling for separation) --- */
 .converter-card {
-    padding: 15px; /* Simple separator border */
+    padding: 15px;
     padding-top: 0;
     border: 1px solid #ccc;
-    background-color: #f9f9f9; /* Slight difference for separation */
+    background-color: #f9f9f9;
 }
 
 .card-title {
@@ -67,7 +64,6 @@ body {
     stroke-width: 2;
 }
 
-/* --- Input and Textarea Styles --- */
 .file-input {
     display: block;
     width: 100%;
@@ -76,7 +72,7 @@ body {
     border: 1px solid #ccc;
     background-color: #fff;
     color: #000;
-    box-sizing: border-box; /* FIX: Include padding and border within the 100% width */
+    box-sizing: border-box;
 }
 
 .input-area {
@@ -88,38 +84,36 @@ body {
     background-color: #fff;
     color: #000;
     margin-bottom: 10px;
-    box-sizing: border-box; /* FIX: Include padding and border within the 100% width */
+    box-sizing: border-box;
 }
 
 .input-area:focus {
-    outline: 1px solid blue; /* Use standard focus outline */
+    outline: 1px solid blue;
     border-color: blue;
     box-shadow: none;
 }
 
-/* Container for file name input and label */
 .file-name-group {
     display: flex;
     align-items: center;
-    margin-bottom: 10px; /* Adjusted spacing to look right after repositioning the element */
+    margin-bottom: 10px;
 }
 
 .file-name-label {
     margin-right: 8px;
-    white-space: nowrap; /* Prevent the label from wrapping */
+    white-space: nowrap;
 }
 
 .file-name-input {
-    flex-grow: 1; /* Allow input to take remaining space */
+    flex-grow: 1;
     padding: 5px;
     border: 1px solid #ccc;
     color: #000;
-    box-sizing: border-box; /* Ensure correct width calculation */
+    box-sizing: border-box;
 }
 
-/* --- Checkbox Option Group --- */
 .option-group {
-    margin-bottom: 10px; /* Add spacing below the checkbox */
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
@@ -128,18 +122,16 @@ body {
     margin-left: 5px;
 }
 
-/* --- Button Styles (Default system look) --- */
 .btn {
     width: 100%;
     padding: 8px;
     cursor: pointer;
     margin-bottom: 10px;
     border: 1px solid #ccc;
-    background-color: #e0e0e0; /* Default button gray */
+    background-color: #e0e0e0;
     color: #000;
     text-transform: none;
     letter-spacing: initial;
-    /* Focus state relies on browser default */
 }
 
 .btn:hover:not(:disabled) {
@@ -154,7 +146,6 @@ body {
     border-color: #ccc;
 }
 
-/* --- Message Box (Minimal) --- */
 .message-box {
     padding: 10px;
     height: 18px;
@@ -166,38 +157,36 @@ body {
 }
 
 .message-box.hidden {
-    /* Critical change to reserve space and prevent layout shift */
     visibility: hidden; 
-    height: 18px; /* Calculate approximate height of message text + padding */
-    padding: 10px; /* Keep padding to reserve space */
+    height: 18px;
+    padding: 10px;
     margin-top: 20px; 
     margin-bottom: 15px; 
-    border: 1px solid transparent; /* Use transparent border to reserve border space */
-    background-color: transparent; /* Use transparent background */
+    border: 1px solid transparent;
+    background-color: transparent;
 }
 
 .message-box.success {
     visibility: visible;
     border-color: green;
     color: green;
-    background-color: #e6ffe6; /* Light green background */
+    background-color: #e6ffe6;
 }
 
 .message-box.error {
     visibility: visible;
     border-color: red;
     color: red;
-    background-color: #ffe6e6; /* Light red background */
+    background-color: #ffe6e6;
 }
 
 .message-box.info {
     visibility: visible;
     border-color: blue;
     color: blue;
-    background-color: #e6e6ff; /* Light blue background */
+    background-color: #e6e6ff;
 }
 
-/* --- Download Link Container --- */
 .download-link-container {
     margin-top: 10px;
     text-align: center;

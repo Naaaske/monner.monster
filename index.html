@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PDF ↔ Base64 Converter</title>
-    <!-- Link to custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Load Font (Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,12 +14,10 @@
             <h1 class="title">PDF ↔ Base64 Utility</h1>
         </header>
 
-        <!-- MESSAGE BOX MOVED ABOVE THE GRID -->
         <div id="message-box" class="message-box hidden" title=" "></div>
 
         <div class="converter-grid">
 
-            <!-- Conversion: PDF to Base64 (Encode) -->
             <div class="converter-card">
                 <h2 class="card-title">
                     PDF to Base64
@@ -44,14 +40,12 @@
                 </button>
             </div>
 
-            <!-- Conversion: Base64 to PDF (Decode) -->
             <div class="converter-card">
                 <h2 class="card-title">
                     Base64 to PDF
                 </h2>
                 <textarea id="base64Input" placeholder="Paste Base64 string here..." class="input-area"></textarea>
 
-                <!-- FILE NAME INPUT MOVED HERE -->
                 <div class="file-name-group">
                     <label for="fileNameInput" class="file-name-label">PDF file name:</label>
                     <input type="text" id="fileNameInput" value="decoded_document.pdf" class="file-name-input" placeholder="e.g., document.pdf">
@@ -60,11 +54,13 @@
                 <button onclick="convertBase64ToPdf()" id="decodeButton" class="btn btn-success" disabled>
                     Convert & Download PDF
                 </button>
+
+                <p id="downloadLinkContainer" class="download-link-container">
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- Link to custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
