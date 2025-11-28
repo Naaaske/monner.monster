@@ -5,6 +5,10 @@ const downloadLinkContainer = document.getElementById('downloadLinkContainer');
 const copyButton = document.getElementById('copyButton');
 const decodeButton = document.getElementById('decodeButton');
 const fileNameInput = document.getElementById('fileNameInput');
+const encodeButton = document.getElementById('encodeButton');
+const selectedFileName = document.getElementById('selectedFileName');
+const fileInputLabel = document.querySelector('.custom-file-upload');
+const includePrefixCheckbox = document.getElementById('includePrefixCheckbox');
 
 let debounceTimeout = null;
 
@@ -25,7 +29,11 @@ function showMessage(message, type) {
 }
 
 function base64ToUint8Array(base64) {
-    const base64String = base64.split(',').pop();
+    let base64String = base64;
+    if (base64.includes(',')) {
+        base64String = base64.split(',').pop();
+    }
+    
     const raw = window.atob(base64String);
     const rawLength = raw.length;
     const array = new Uint8Array(rawLength);
@@ -46,18 +54,42 @@ function copyToClipboard(elementId) {
     element.select();
 
     try {
-        document.execCommand('copy');
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(element.value)
+                .then(() => showMessage("Copied to clipboard!", 'success'))
+                .catch(err => {
+                    console.error('Failed to copy text (Clipboard API): ', err);
+                    document.execCommand('copy');
+                    showMessage("Copied to clipboard!", 'success');
+                });
+        } else {
+            document.execCommand('copy');
+            showMessage("Copied to clipboard!", 'success');
+        }
+        
     } catch (err) {
         console.error('Failed to copy text: ', err);
         showMessage("Failed to copy. Please select the text manually.", 'error');
     }
 }
 
+function updateFileSelectionDisplay(file) {
+    if (file) {
+        selectedFileName.textContent = `File: ${file.name}`;
+        fileInputLabel.classList.add('file-selected');
+    } else {
+        selectedFileName.textContent = '';
+        fileInputLabel.classList.remove('file-selected');
+    }
+}
+
+
 function convertPdfToBase64() {
     const file = pdfFileInput.files[0];
     base64Output.value = '';
     copyButton.disabled = true;
     downloadLinkContainer.innerHTML = '';
+    updateFileSelectionDisplay(file);
 
     if (!file) {
         showMessage("Please select a PDF file first.", 'error');
@@ -67,6 +99,7 @@ function convertPdfToBase64() {
     if (file.type !== 'application/pdf') {
         showMessage("The selected file is not a PDF.", 'error');
         pdfFileInput.value = '';
+        updateFileSelectionDisplay(null);
         return;
     }
 
@@ -131,17 +164,26 @@ function convertBase64ToPdf() {
         
         downloadLinkContainer.removeChild(a);
         setTimeout(() => URL.revokeObjectURL(url), 100); 
+        
+        showMessage(`PDF download for '${fileName}' initiated!`, 'success');
 
     } catch (e) {
         console.error("Decoding error:", e);
+        showMessage("Decoding failed. Check if the Base64 string is valid.", 'error');
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    pdfFileInput.addEventListener('change', () => {
+    
+    pdfFileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        updateFileSelectionDisplay(file);
+        
+        encodeButton.disabled = !file;
+
         base64Output.value = '';
         copyButton.disabled = true;
-        downloadLinkContainer.innerHTML = '';
+        downloadLinkContainer.innerHTML = '';    
     });
 
     base64Input.addEventListener('input', () => {

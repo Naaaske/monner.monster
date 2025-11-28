@@ -2,7 +2,7 @@ body {
     font-family: sans-serif; 
     padding: 20px;
     margin: 0;
-    background-color: #fff;
+    background-color: #282a36;
 }
 
 .container {
@@ -13,17 +13,16 @@ body {
     border: none;
 }
 
-
 .title {
     font-size: 2em;
     text-align: center;
     margin-bottom: 0.5em;
-    color: #000;
+    color: #f8f8f2;
 }
 
 .subtitle {
     text-align: center;
-    color: #666;
+    color: #6272a4;
     margin-bottom: 2em;
 }
 
@@ -43,8 +42,8 @@ body {
 .converter-card {
     padding: 15px;
     padding-top: 0;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    background-color: #44475a; 
+    border: 1px solid #6272a4;
 }
 
 .card-title {
@@ -53,7 +52,7 @@ body {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
-    color: #000;
+    color: #bd93f9;
     justify-content: center;
 }
 
@@ -62,34 +61,71 @@ body {
     height: 20px;
     margin-right: 8px;
     stroke-width: 2;
+    stroke: #bd93f9;
 }
 
-.file-input {
-    display: block;
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #000;
-    box-sizing: border-box;
+.hidden-file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+
+.custom-file-upload {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid #50fa7b;
+    background-color: #50fa7b;
+    color: #282a36;
+    text-transform: none;
+    letter-spacing: initial;
+    transition: background-color 0.1s ease;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.custom-file-upload:hover {
+    background-color: #f1fa8c;
+    border-color: #f1fa8c;
+}
+
+#selectedFileName {
+    margin-left: 10px;
+    color: #44475a; 
+}
+
+.file-selected #fileInputLabelText {
+    display: none;
+}
+
+.custom-file-upload:not(.file-selected) #fileInputLabelText {
+    display: initial;
+}
+
 
 .input-area {
     min-height: 200px;
     width: 100%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #6272a4;
     resize: vertical;
-    background-color: #fff;
-    color: #000;
+    background-color: #282a36;
+    color: #f8f8f2;
     margin-bottom: 10px;
     box-sizing: border-box;
 }
 
 .input-area:focus {
-    outline: 1px solid blue;
-    border-color: blue;
+    outline: 1px solid #bd93f9;
+    border-color: #bd93f9;
     box-shadow: none;
 }
 
@@ -97,6 +133,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    color: #f8f8f2; 
 }
 
 .file-name-label {
@@ -107,8 +144,9 @@ body {
 .file-name-input {
     flex-grow: 1;
     padding: 5px;
-    border: 1px solid #ccc;
-    color: #000;
+    border: 1px solid #6272a4;
+    color: #f8f8f2;
+    background-color: #282a36;
     box-sizing: border-box;
 }
 
@@ -116,10 +154,58 @@ body {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
+    color: #f8f8f2;
+}
+
+.option-group input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .option-group label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    user-select: none;
     margin-left: 5px;
+}
+
+.option-group label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #bd93f9;
+    background-color: #282a36;
+    box-sizing: border-box;
+    transition: all 0.1s ease;
+}
+
+.option-group label::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    width: 6px;
+    height: 10px;
+    border: solid #50fa7b;
+    border-width: 0 3px 3px 0;
+    transform: translateY(-60%) rotate(45deg);
+    opacity: 0; 
+    transition: opacity 0.1s ease;
+}
+
+.option-group input[type="checkbox"]:checked + label::after {
+    opacity: 1;
+}
+
+.option-group input[type="checkbox"]:checked + label::before {
+    background-color: #44475a;
 }
 
 .btn {
@@ -127,23 +213,26 @@ body {
     padding: 8px;
     cursor: pointer;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    background-color: #e0e0e0;
-    color: #000;
+    border: 1px solid #bd93f9;
+    background-color: #bd93f9;
+    color: #282a36;
+    font-weight: bold;
     text-transform: none;
     letter-spacing: initial;
+    transition: background-color 0.1s ease;
 }
 
 .btn:hover:not(:disabled) {
-    background-color: #d0d0d0;
+    background-color: #ff79c6;
+    border-color: #ff79c6;
 }
 
 .btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: default;
-    background-color: #e0e0e0;
-    color: #666;
-    border-color: #ccc;
+    background-color: #6272a4;
+    color: #282a36;
+    border-color: #6272a4;
 }
 
 .message-box {
@@ -153,7 +242,7 @@ body {
     margin-bottom: 15px;
     border: 1px solid;
     text-align: center;
-    background-color: #fff;
+    background-color: #44475a;
 }
 
 .message-box.hidden {
@@ -168,23 +257,23 @@ body {
 
 .message-box.success {
     visibility: visible;
-    border-color: green;
-    color: green;
-    background-color: #e6ffe6;
+    border-color: #50fa7b;
+    color: #50fa7b;
+    background-color: #44475a; 
 }
 
 .message-box.error {
     visibility: visible;
-    border-color: red;
-    color: red;
-    background-color: #ffe6e6;
+    border-color: #ff5555;
+    color: #ff5555;
+    background-color: #44475a;
 }
 
 .message-box.info {
     visibility: visible;
-    border-color: blue;
-    color: blue;
-    background-color: #e6e6ff;
+    border-color: #f1fa8c;
+    color: #f1fa8c;
+    background-color: #44475a;
 }
 
 .download-link-container {
@@ -193,7 +282,7 @@ body {
 }
 
 .download-link-container a {
-    color: blue;
+    color: #8be9fd;
     font-weight: normal;
     text-decoration: underline;
     display: block;
